@@ -19,6 +19,7 @@
 	"dependencies": {
 		"@godspeedsystems/api-generator": "latest",
 		"@godspeedsystems/core": "latest",
+		"@godspeedsystems/plugins-axios-as-datasource": "^1.0.0-beta.7",
 		"@godspeedsystems/plugins-express-as-http": "latest",
 		"config": "^3.3.9",
 		"dotenv": "^16.0.3",
