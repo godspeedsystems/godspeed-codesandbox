@@ -1,0 +1,5 @@
+summary: Fetch many Post
+tasks:
+  - id: postgresql_post_search
+    fn: datasource.postgresql.Post.findMany
+    args: {}

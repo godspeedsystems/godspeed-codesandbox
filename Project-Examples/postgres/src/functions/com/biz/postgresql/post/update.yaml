@@ -1,0 +1,8 @@
+summary: Update Post
+tasks:
+  - id: postgresql_post_update
+    fn: datasource.postgresql.Post.update
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>
+      data: <% inputs.body %>

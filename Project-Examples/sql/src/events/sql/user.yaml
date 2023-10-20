@@ -1,0 +1,88 @@
+# ONE
+http.get./sql/user/{id}:
+  summary: Fetch User
+  description: Fetch User from database
+  fn: com.biz.sql.user.one
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    content:
+      application/json:
+        schema:
+          type: object
+
+# CREATE
+http.post./sql/user:
+  summary: Create a new User
+  description: Create User from database
+  fn: com.biz.sql.user.create
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/sql/User'
+  responses:
+    content:
+      application/json:
+        schema:
+          type: object
+
+# UPDATE
+http.put./sql/user/{id}:
+  summary: Update a User
+  description: Update User from database
+  fn: com.biz.sql.user.update
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/sql/User'
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    content:
+      application/json:
+        schema:
+          type: object
+
+# DELETE
+http.delete./sql/user/{id}:
+  summary: Delete a User
+  description: Delete User from database
+  fn: com.biz.sql.user.delete
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    content:
+      application/json:
+        schema:
+          type: object
+
+# SEARCH
+http.post./sql/user/search:
+  summary: Fetch multiple User
+  description: Fetch multiple User from database
+  fn: com.biz.sql.user.search
+  body:
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    content:
+      application/json:
+        schema:
+          type: array
+

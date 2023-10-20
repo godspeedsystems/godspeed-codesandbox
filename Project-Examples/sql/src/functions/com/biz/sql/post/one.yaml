@@ -1,0 +1,7 @@
+summary: Fetch Post
+tasks:
+  - id: sql_post_one
+    fn: datasource.sql.Post.findUnique
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

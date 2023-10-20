@@ -1,0 +1,8 @@
+summary: Update User
+tasks:
+  - id: sql_user_update
+    fn: datasource.sql.User.update
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>
+      data: <% inputs.body %>
