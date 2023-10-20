@@ -1,0 +1,6 @@
+summary: Create Post
+tasks:
+  - id: postgresql_post_create
+    fn: datasource.postgresql.Post.create
+    args:
+      data: <% inputs.body %>

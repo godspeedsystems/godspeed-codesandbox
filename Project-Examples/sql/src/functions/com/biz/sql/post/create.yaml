@@ -1,0 +1,6 @@
+summary: Create Post
+tasks:
+  - id: sql_post_create
+    fn: datasource.sql.Post.create
+    args:
+      data: <% inputs.body %>

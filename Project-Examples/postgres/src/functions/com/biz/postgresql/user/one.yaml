@@ -1,0 +1,7 @@
+summary: Fetch User
+tasks:
+  - id: postgresql_user_one
+    fn: datasource.postgresql.User.findUnique
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

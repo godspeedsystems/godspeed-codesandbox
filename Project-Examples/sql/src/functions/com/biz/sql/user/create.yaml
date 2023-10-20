@@ -1,0 +1,6 @@
+summary: Create User
+tasks:
+  - id: sql_user_create
+    fn: datasource.sql.User.create
+    args:
+      data: <% inputs.body %>

@@ -1,0 +1,5 @@
+summary: Fetch many Post
+tasks:
+  - id: sql_post_search
+    fn: datasource.sql.Post.findMany
+    args: {}

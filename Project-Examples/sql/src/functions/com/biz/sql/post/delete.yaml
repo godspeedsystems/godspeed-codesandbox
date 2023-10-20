@@ -1,0 +1,7 @@
+summary: Delete Post
+tasks:
+  - id: sql_post_delete
+    fn: datasource.sql.Post.delete
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>
