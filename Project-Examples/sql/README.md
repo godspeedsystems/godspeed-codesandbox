@@ -1,58 +1,49 @@
-# Creating a MongoDB Connection
+### Using docker MySQL Container for MySQL:
 
-To create a connection string in MongoDB Atlas for Prisma, follow these steps:
 
-1. **Log In or Sign Up for MongoDB Atlas**:
+1. **Install Docker**:
 
-   If you don't already have an account, go to the [MongoDB Atlas website](https://www.mongodb.com/cloud/atlas) and sign up for a MongoDB Atlas account.
+   Install Docker on your machine by following the instructions on the [official Docker website](https://docs.docker.com/get-docker/).
 
-2. **Create a New Project**:
+2. **Run MySQL Container**:
 
-   After signing in, create a new project in MongoDB Atlas. Give your project a name.
+   Run the following command in your terminal to start a MySQL container:
 
-3. **Build a New Cluster**:
-
-   Inside your project, create a new cluster by clicking the "Build a Cluster" button. You'll need to choose a cloud provider (e.g., AWS, Azure, Google Cloud) and a region.
-
-4. **Configure Your Cluster**:
-
-   Once your cluster is created, configure it according to your needs.
-
-5. **Create a MongoDB User**:
-
-   In the "Database Access" section of your cluster settings, create a MongoDB user with the necessary privileges. You'll need this user's credentials to connect to the database from your Prisma application.
-
-6. **Get the Connection String**:
-
-   In the "Clusters" view, click the "Connect" button for your cluster. This will open a dialog where you can choose how you want to connect. Select "Connect your application."
-
-7. **Configure Connection String**:
-
-   In the "Connect to Cluster" dialog, you'll see a connection string that you can use in your Prisma application. It will look something like this:
-
-   ```
-   mongodb+srv://<username>:<password>@clustername.mongodb.net/<dbname>
+   ```bash
+   docker run --name your-mysql-container -e MYSQL_ROOT_PASSWORD=your-root-password -e MYSQL_DATABASE=your-database -p 3306:3306 -d mysql:latest
    ```
 
-   Replace `<username>`, `<password>`, `<clustername>`, and `<dbname>` with your actual MongoDB Atlas credentials and database name.
+   Replace `your-mysql-container` with a suitable name, `your-root-password` with your desired root password, and `your-database` with your desired database name.
 
-8. **Use the Connection String in Prisma**:
+3. **Get Connection String**:
 
-   In your Prisma schema file, configure the `url` property in the `datasource` block to use the MongoDB Atlas connection string you obtained in the previous step:
+   The connection string for the locally running MySQL will be of the form:
+
+   ```bash
+   mysql://root:your-root-password@127.0.0.1:3306/your-database
+   ```
+
+   Replace `your-root-password` with the root password you set and `your-database` with your desired database name.
+
+4. **Use Connection String in Prisma**:
+
+   Update your Prisma schema file with the local MySQL connection string:
 
    ```prisma
    datasource db {
-     provider = "mongodb"
-     url      = env("MONGO_TEST_URL") // Use your MongoDB Atlas connection string here
+     provider = "mysql"
+     url      = env("LOCAL_MYSQL_URL") // Use your local MySQL connection string here
    }
    ```
 
-   You can use environment variables to securely store the connection string, or you can replace it directly.
+   Set the `LOCAL_MYSQL_URL` as an environment variable.
 
-9. **Run godspeed prisma prepare command**:
+5. **Run godspeed prisma prepare command**:
 
-   This command generates the prisma client for your application and connects the prisma to your database.
+   This command generates the Prisma client for your application and connects Prisma to your MySQL database.
 
-10. **Start Building Your Application**:
+6. **Start Building Your Application**:
 
     With the connection string and Prisma models in place, you can now start building your application using Prisma to interact with your MongoDB Atlas database.
+
+

@@ -1,58 +1,41 @@
-# Creating a MongoDB Connection
+### Using ElephantSQL for PostgreSQL:
 
-To create a connection string in MongoDB Atlas for Prisma, follow these steps:
+1. **Sign Up for ElephantSQL**:
 
-1. **Log In or Sign Up for MongoDB Atlas**:
+   If you don't have an account, sign up for a free account at [ElephantSQL](https://www.elephantsql.com/).
 
-   If you don't already have an account, go to the [MongoDB Atlas website](https://www.mongodb.com/cloud/atlas) and sign up for a MongoDB Atlas account.
+2. **Create an Instance**:
 
-2. **Create a New Project**:
+   After signing in, create a new instance by clicking on "Create New Instance." Choose a plan that suits your needs; there's a free plan available.
 
-   After signing in, create a new project in MongoDB Atlas. Give your project a name.
+3. **Get Connection String**:
 
-3. **Build a New Cluster**:
+   Once your instance is created, click on it to see details. In the details page, you will find the connection string. It will look something like this:
 
-   Inside your project, create a new cluster by clicking the "Build a Cluster" button. You'll need to choose a cloud provider (e.g., AWS, Azure, Google Cloud) and a region.
-
-4. **Configure Your Cluster**:
-
-   Once your cluster is created, configure it according to your needs.
-
-5. **Create a MongoDB User**:
-
-   In the "Database Access" section of your cluster settings, create a MongoDB user with the necessary privileges. You'll need this user's credentials to connect to the database from your Prisma application.
-
-6. **Get the Connection String**:
-
-   In the "Clusters" view, click the "Connect" button for your cluster. This will open a dialog where you can choose how you want to connect. Select "Connect your application."
-
-7. **Configure Connection String**:
-
-   In the "Connect to Cluster" dialog, you'll see a connection string that you can use in your Prisma application. It will look something like this:
-
-   ```
-   mongodb+srv://<username>:<password>@clustername.mongodb.net/<dbname>
+   ```bash
+   postgres://your-username:your-password@your-host:5432/your-database
    ```
 
-   Replace `<username>`, `<password>`, `<clustername>`, and `<dbname>` with your actual MongoDB Atlas credentials and database name.
+   Replace `your-username`, `your-password`, `your-host`, and `your-database` with your actual ElephantSQL credentials and database name.
 
-8. **Use the Connection String in Prisma**:
+4. **Use Connection String in Prisma**:
 
-   In your Prisma schema file, configure the `url` property in the `datasource` block to use the MongoDB Atlas connection string you obtained in the previous step:
+   Update your Prisma schema file with the ElephantSQL connection string:
 
    ```prisma
    datasource db {
-     provider = "mongodb"
-     url      = env("MONGO_TEST_URL") // Use your MongoDB Atlas connection string here
+     provider = "postgresql"
+     url      = env("ELEPHANTSQL_URL") // Use your ElephantSQL connection string here
    }
    ```
 
-   You can use environment variables to securely store the connection string, or you can replace it directly.
+   Set the `ELEPHANTSQL_URL` as an environment variable.
 
-9. **Run godspeed prisma prepare command**:
+5. **Run godspeed prisma prepare command**:
 
-   This command generates the prisma client for your application and connects the prisma to your database.
+   This command generates the Prisma client for your application and connects Prisma to your ElephantSQL PostgreSQL database.
 
-10. **Start Building Your Application**:
 
-    With the connection string and Prisma models in place, you can now start building your application using Prisma to interact with your MongoDB Atlas database.
+6. **Start Building Your Application**:
+
+    With the connection string and Prisma models in place, you can now start building your application using Prisma to interact with your postgres database.
